@@ -135,6 +135,26 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     }
 
+    @Override
+    public List<String> getTitles() throws SQLException {
+        String sql = "SELECT distinct title FROM employee";
+
+        Connection conn = getConnection();
+        List<String> result = new LinkedList<String>();
+
+        log.info("Listing Titles: " + sql );
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            result.add(rs.getString(1));
+        }
+
+        rs.close();
+        ps.close();
+        return result;
+    }
+
     private Employee extractEmployeeFromResultSet(ResultSet rs) throws SQLException {
         Employee result = new Employee();
         result.setId(rs.getString("ID"));

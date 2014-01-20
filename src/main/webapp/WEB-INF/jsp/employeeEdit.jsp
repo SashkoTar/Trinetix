@@ -57,7 +57,20 @@
             <td>${employee.id}  </td>
             <td>${employee.firstName}"</td>
             <td>${employee.lastName}"</td>
-            <td><input name="title" value="${employee.title}"/></td>
+            <td>
+                <select name="title">
+                    <c:forEach items="${titles}" var='title'>
+                        <c:choose>
+                            <c:when test="${employee.title == title}">
+                                <option value="${title}" selected="true">${title}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${title}">${title}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+            </td>
             <td>${employee.dateOfBirth}"</td>
             <td>${employee.startDate}"</td>
             <td>
@@ -83,12 +96,16 @@
                 </select>
             </td>
         </tr>
+        <tr>
+            <td colspan="7"><p>Comments:</p> ${employee.comments}</td>
+        </tr>
 </table>
 <input type="hidden" name="id" value="${employee.id}">
 <input type="hidden" name="dateOfBirth" value="${employee.dateOfBirth}">
 <input type="hidden" name="startDate" value="${employee.startDate}">
 <input type="hidden" name="firstName" value="${employee.firstName}">
 <input type="hidden" name="lastName" value="${employee.lastName}">
+<input type="hidden" name="comments" value="${employee.comments}">
 <a href="#" onclick="document.getElementById('employeeAttribute').submit();">Save</a>
 <a href="/trinetix/employee/list" >Cancel</a>
 </form:form>

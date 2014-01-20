@@ -41,6 +41,7 @@ public class EmployeeController {
     public String edit(@PathVariable String id, ModelMap model) throws SQLException {
         model.addAttribute("employee", dao.getById(id));
         model.addAttribute("managers", dao.getListByTitle("Manager"));
+        model.addAttribute("titles", dao.getTitles());
         return "employeeEdit";
     }
 

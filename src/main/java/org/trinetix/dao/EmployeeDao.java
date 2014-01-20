@@ -14,6 +14,8 @@ public interface EmployeeDao {
 
     public List<Employee> getList(String orderBy) throws SQLException;
 
+    public List<String> getTitles() throws SQLException;
+
     int getCount() throws SQLException;
 
     List<Employee> getListByTitle(String title) throws SQLException;
